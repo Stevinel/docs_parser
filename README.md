@@ -3,7 +3,7 @@
 
 ### Description
 
-> This is a document parser that does not rely on any third-party libraries. It automatically parses column names and creates fields in the database based on them. It is designed to be expandable as the table grows. The parser requires you to specify the names of single column headers, such as "company". To run the parser, simply execute the "main.py" file.
+> This is a document parser that does not rely on any third-party libraries. It automatically parses column names and creates fields in the database based on them. It is designed to be expandable as the table grows horizontally. The parser requires you to specify the names of single column headers, such as "company". To run the parser, simply execute the "main.py" file.
 > The total calculated during code execution will be returned to the terminal upon completion.
 
 ### Run
