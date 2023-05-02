@@ -47,7 +47,7 @@ if __name__ == "__main__":
         init_query = get_initial_query(db_executor.db_name, column_names)
         db_executor.execute_query_with_data(conn, init_query, data)
 
-        # crete date column
+        # create date column
         create_date = get_create_column_query(db_executor.db_name)
         db_executor.execute_query(conn, create_date)
 
