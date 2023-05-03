@@ -27,12 +27,12 @@ if __name__ == "__main__":
     printer = DatabasePrettyView()
     fields_gen = DateFieldsGenerator()
 
-    # read table in file
+    # read table from file
     file_reader.read_fields_values()
     file_reader.read_column_names()
 
     column_names = file_reader.get_all_col_names(SIMPLE_NAMES)
-    data = file_reader.get_data()
+    data = file_reader.data
 
     with db_conn as conn:
         # drop table if exists

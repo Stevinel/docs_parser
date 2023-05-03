@@ -44,7 +44,6 @@ class DatabaseConnector(Database):
 
 class DatabaseQueryExecutor(Database):
     """Execute database queries on an sqlite database"""
-
     def execute_query(
         self, conn: db.Connection, query: str, result: bool = None
     ) -> None | list:

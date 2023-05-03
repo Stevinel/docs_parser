@@ -1,6 +1,7 @@
 from abc import ABC
 import openpyxl as pyxl
 
+
 class DocumentParser(ABC):
     def __init__(self, table_name: str) -> None:
         """
@@ -12,6 +13,7 @@ class DocumentParser(ABC):
         self.workbook = pyxl.load_workbook(table_name, read_only=True)
         self.sheet = self.workbook.active
         self._data = []
+
 
 class FileReader(DocumentParser):
     def __init__(self, table_name: str) -> None:
@@ -99,7 +101,8 @@ class FileReader(DocumentParser):
 
         return sorted(crossed_names | filtered_names)
 
-    def get_data(self) -> list:
+    @property
+    def data(self) -> list:
         """
         Returns _data
 

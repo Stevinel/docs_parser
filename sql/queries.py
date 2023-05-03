@@ -87,18 +87,37 @@ def get_total_query(db_name: str) -> str:
     Returns:
         str; SQL query to calculate total values
     """
-    query = f" \
-            SELECT date, company, results, \
-                SUM(fact_Qliq_data1 + fact_Qliq_data2) AS total_qliq, \
-                SUM(fact_Qoil_data1 + fact_Qoil_data2) AS total_qoil \
-            FROM (\
-                SELECT date, company, 'fact' AS results, \
-                    fact_Qliq_data1, fact_Qliq_data2, fact_Qoil_data1, fact_Qoil_data2 \
-                FROM {db_name} \
-                UNION ALL \
-                SELECT date, company, 'forecast' AS results, \
-                    forecast_Qliq_data1, forecast_Qliq_data2, forecast_Qoil_data1, forecast_Qoil_data2 \
-                FROM {db_name} \
-            ) \
-            GROUP BY date, company, results"
+    query = f"""
+        SELECT 
+            date, 
+            company, 
+            results, 
+            SUM(fact_Qliq_data1 + fact_Qliq_data2) AS total_qliq, 
+            SUM(fact_Qoil_data1 + fact_Qoil_data2) AS total_qoil 
+        FROM (
+            SELECT 
+                date, 
+                company, 
+                'fact' AS results, 
+                fact_Qliq_data1, 
+                fact_Qliq_data2, 
+                fact_Qoil_data1, 
+                fact_Qoil_data2 
+            FROM {db_name}
+            UNION ALL 
+            SELECT 
+                date, 
+                company, 
+                'forecast' AS results, 
+                forecast_Qliq_data1, 
+                forecast_Qliq_data2, 
+                forecast_Qoil_data1, 
+                forecast_Qoil_data2 
+            FROM {db_name}
+        ) AS subquery 
+        GROUP BY 
+            date, 
+            company, 
+            results
+        """
     return query
