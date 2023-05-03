@@ -130,6 +130,9 @@ class DatabasePrettyView:
         Args:
             data (List[Tuple]): Database results to print
         """
+        if not data:
+            raise TypeError("Could not get data to output results")
+
         for result in data:
             date, company, results, total_qliq, total_qoil = result
             print(
