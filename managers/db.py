@@ -34,7 +34,7 @@ class DatabaseConnector(Database):
 
     def __enter__(self) -> db.Connection:
         """Connect to the sqlite database"""
-        self.connection = db.connect(self.db_name)
+        self.connection = db.connect(f"{self.db_name}.db")
         return self.connection
 
     def __exit__(self, exc_type, exc_value, traceback):
